@@ -1,12 +1,13 @@
 // ContactForm.jsx
 
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
+import { addContact } from "../../redux/contactsSlice";
 import styles from "./ContactForm.module.css";
 
-// Функція для форматування номера з тире
 const formatPhoneNumber = (value) => {
   const digitsOnly = value.replace(/[^0-9]/g, "");
   if (digitsOnly.length === 7) {
@@ -18,7 +19,9 @@ const formatPhoneNumber = (value) => {
   return value;
 };
 
-const ContactForm = ({ addContact }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(3, "Too Short!")
@@ -32,10 +35,7 @@ const ContactForm = ({ addContact }) => {
       .test(
         "is-valid-number",
         "Number must contain exactly 7 digits",
-        (value) => {
-          const digitCount = value.replace(/[^0-9]/g, "").length;
-          return digitCount === 7;
-        }
+        (value) => value.replace(/[^0-9]/g, "").length === 7
       )
       .required("Required"),
   });
@@ -52,7 +52,7 @@ const ContactForm = ({ addContact }) => {
             name: values.name,
             number: formattedNumber,
           };
-          addContact(newContact);
+          dispatch(addContact(newContact));
           resetForm();
         }}
       >
