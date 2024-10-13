@@ -3,7 +3,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-// прибрано import { nanoid } from "nanoid"; тому що дані тепер генеруються із бекенда
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsSlice";
 import styles from "./ContactForm.module.css";
@@ -48,7 +47,6 @@ const ContactForm = () => {
         onSubmit={(values, { resetForm }) => {
           const formattedNumber = formatPhoneNumber(values.number);
           const newContact = {
-            // id: nanoid(),
             name: values.name,
             number: formattedNumber,
           };
