@@ -17,28 +17,31 @@ const ContactList = () => {
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
+  // Отримуємо контакти з бекенду при завантаженні компонента
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  // Обробник для видалення контакту
   const handleDeleteContact = (id) => {
     dispatch(deleteContact(id));
   };
 
   return (
     <div className={styles.contactList}>
+      {/* Відображення списку контактів */}
       {loading && <p>Loading contacts...</p>}
       {error && <p>Error: {error}</p>}
-      {!loading && !error && contacts.length > 0 ? ( // Перевіряємо, чи є контакти
+      {!loading && !error && contacts.length > 0 ? (
         contacts.map((contact) => (
           <Contact
-            key={contact.id} // Унікальний ключ для кожного контакту
+            key={contact.id}
             contact={contact}
             deleteContact={handleDeleteContact}
           />
         ))
       ) : (
-        <p>No contacts available.</p> // Повідомлення, якщо контактів немає
+        <p>Please, wait.</p>
       )}
     </div>
   );

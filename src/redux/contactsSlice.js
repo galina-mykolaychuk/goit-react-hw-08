@@ -16,14 +16,12 @@ const contactsSlice = createSlice({
     error: null,
   },
   reducers: {
-    // Експорт дії addContact
     addContact: (state, action) => {
       state.items.push(action.payload);
     },
   },
   extraReducers: (builder) => {
     builder
-      // Операція отримання контактів
       .addCase(fetchContacts.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -42,6 +40,7 @@ const contactsSlice = createSlice({
         state.error = null;
       })
       .addCase(addContactOp.fulfilled, (state, action) => {
+        state.items.push(action.payload); // Додаємо контакт до списку
         state.loading = false;
       })
       .addCase(addContactOp.rejected, (state, action) => {
@@ -80,8 +79,5 @@ export const selectFilteredContacts = createSelector(
     );
   }
 );
-
-// Експорт дії addContact
-export const { addContact } = contactsSlice.actions;
 
 export default contactsSlice.reducer;
