@@ -1,31 +1,52 @@
 // App.jsx
 
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux"; // Імпорт useDispatch з Redux
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
-import styles from "./App.module.css";
-import { fetchContacts } from "./redux/contactsOps";
+import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { refreshUser } from "./redux/auth/operations";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
+import HomePage from "./pages/HomePage/HomePage";
+import ContactsPage from "./pages/ContactsPage/ContactsPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
+import Layout from "./components/Layout/Layout";
+import "./App.module.css";
 
 const App = () => {
-  const dispatch = useDispatch(); // Отримання доступу до dispatch
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchContacts()); // Виклик fetchContacts при завантаженні
-  }, [dispatch]); // Додати dispatch як залежність
+    dispatch(refreshUser()); // Оновлення авторизованого користувача
+  }, [dispatch]);
 
   return (
-    <div className={styles.appContainer}>
-      <div className={styles.sidebar}>
-        <h1>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-      </div>
-      <div className={styles.content}>
-        <ContactList />
-      </div>
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={RegistrationPage}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={LoginPage} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={ContactsPage} />
+          }
+        />
+      </Routes>
+    </Layout>
   );
 };
 
