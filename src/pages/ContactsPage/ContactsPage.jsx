@@ -1,6 +1,6 @@
 // ContactsPage.jsx
 
-import ContactList from "../components/ContactList/ContactList";
+import ContactList from "../../components/ContactList/ContactList";
 
 const ContactsPage = () => (
   <div>

@@ -6,8 +6,8 @@ import {
   selectFilteredContacts,
   selectLoading,
   selectError,
-} from "../../redux/contactsSlice";
-import { fetchContacts, deleteContact } from "../../redux/contactsOps";
+} from "../../redux/contacts/selectors";
+import { fetchContacts, deleteContact } from "../../redux/contacts/operations";
 import Contact from "../Contact/Contact";
 import styles from "./ContactList.module.css";
 

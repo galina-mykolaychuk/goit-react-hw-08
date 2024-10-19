@@ -2,7 +2,7 @@
 
 import { useDispatch } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import { register } from "../redux/auth/operations";
+import { register } from "../../redux/auth/operations";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
