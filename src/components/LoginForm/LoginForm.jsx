@@ -1,7 +1,7 @@
 // LoginForm.jsx
 
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { login } from "../../redux/auth/operations";
 
 const LoginForm = () => {
@@ -14,11 +14,29 @@ const LoginForm = () => {
   return (
     <Formik initialValues={{ email: "", password: "" }} onSubmit={handleSubmit}>
       <Form>
-        <label>Email</label>
-        <Field name="email" type="email" required />
+        <div>
+          <label htmlFor="email">Email</label>
+          <Field
+            name="email"
+            type="email"
+            id="email"
+            required
+            autoComplete="email"
+          />
+          <ErrorMessage name="email" component="div" />
+        </div>
 
-        <label>Password</label>
-        <Field name="password" type="password" required />
+        <div>
+          <label htmlFor="password">Password</label>
+          <Field
+            name="password"
+            type="password"
+            id="password"
+            required
+            autoComplete="current-password"
+          />
+          <ErrorMessage name="password" component="div" />
+        </div>
 
         <button type="submit">Login</button>
       </Form>

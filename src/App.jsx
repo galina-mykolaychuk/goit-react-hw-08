@@ -17,36 +17,36 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(refreshUser()); // Оновлення авторизованого користувача
+    dispatch(refreshUser()); // Оновлення авторизованого користувача після завантаження застосунку
   }, [dispatch]);
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} /> {/* Головна сторінка */}
         <Route
-          path="/register"
+          path="register"
           element={
             <RestrictedRoute
               redirectTo="/contacts"
-              component={RegistrationPage}
+              component={<RegistrationPage />}
             />
           }
         />
         <Route
-          path="/login"
+          path="login"
           element={
-            <RestrictedRoute redirectTo="/contacts" component={LoginPage} />
+            <RestrictedRoute redirectTo="/contacts" component={<LoginPage />} />
           }
         />
         <Route
-          path="/contacts"
+          path="contacts"
           element={
-            <PrivateRoute redirectTo="/login" component={ContactsPage} />
+            <PrivateRoute redirectTo="/login" component={<ContactsPage />} />
           }
         />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 };
 

@@ -1,4 +1,4 @@
-// slice.js
+// auth/slice.js
 
 import { createSlice } from "@reduxjs/toolkit";
 import { register, login, logout, refreshUser } from "./operations";

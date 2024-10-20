@@ -8,7 +8,7 @@ const Layout = () => {
     <div>
       <AppBar />
       <main>
-        <Outlet />
+        <Outlet /> {/* Рендеримо вкладені маршрути */}
       </main>
     </div>
   );
