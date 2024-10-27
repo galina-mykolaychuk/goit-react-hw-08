@@ -1,12 +1,12 @@
 // Layout.jsx
 
 import { Outlet } from "react-router-dom";
-import AppBar from "../AppBar/AppBar";
+import CustomAppBar from "../AppBar/AppBar"; // Імпорт CustomAppBar
 
 const Layout = () => {
   return (
     <div>
-      <AppBar />
+      <CustomAppBar /> {/* Використання нового компоненту CustomAppBar */}
       <main>
         <Outlet /> {/* Рендеримо вкладені маршрути */}
       </main>

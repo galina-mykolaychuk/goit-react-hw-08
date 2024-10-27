@@ -4,8 +4,15 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
+  text-align: center;
 }
 
 h1 {
   text-align: center;
+}
+
+.contactsText {
+  text-align: justify;
+  padding: 10px;
+  line-height: 1.6;
 }

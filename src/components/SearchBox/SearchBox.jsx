@@ -16,10 +16,13 @@ const SearchBox = () => {
 
   return (
     <div>
-      <label htmlFor="search">Search contacts</label>
+      <label htmlFor="search" className={styles.searchBoxLabel}>
+        Search contacts
+      </label>
       <input
         type="text"
-        id="search"
+        id="search" // Унікальний ID
+        name="searchFilter" // Унікальний Name
         value={filter}
         onChange={handleChange}
         placeholder="Search contacts"

@@ -9,11 +9,9 @@ body {
   display: block;
   min-width: 320px;
   min-height: 100vh;
-  padding-top: 60px;
 }
 
 h1 {
   font-size: 40px;
   line-height: 1.1;
-  /* text-align: left; */
 }

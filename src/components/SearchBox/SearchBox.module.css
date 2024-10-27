@@ -1,37 +1,16 @@
 /* SearchBox.module.css */
 
-/* .container {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
 .searchBox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  width: 100%;
 }
-
-.label {
+.searchBoxLabel {
   margin-bottom: 4px;
   font-size: 20px;
   font-weight: 500;
   display: block;
   margin-bottom: 5px;
   text-align: left;
-}
-
-.input {
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #000;
-  border-radius: 4px;
-  width: 300px;
-  width: 100%;
-  box-sizing: border-box;
-} */
-
-.searchBox {
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 20px;
-  width: 100%;
 }

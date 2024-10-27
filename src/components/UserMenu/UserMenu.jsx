@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, refreshUser } from "../../redux/auth/operations";
+import styles from "./UserMenu.module.css";
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user); // Отримуємо дані користувача з Redux state
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn); // Перевіряємо, чи залогінений користувач
+  const user = useSelector((state) => state.auth.user);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -20,15 +21,21 @@ const UserMenu = () => {
   };
 
   return (
-    <div>
+    <div className={styles.userMenuContainer}>
       {isLoggedIn ? (
-        <div>
-          <p>Welcome, {user.name}!</p>
+        <div className={styles.userInfo}>
+          <p>Welcome, {user.name}! </p>
           <p>Email: {user.email}</p>
-          <button onClick={handleLogout}>Logout</button>
         </div>
       ) : (
-        <p>Please log in to see your information.</p>
+        <p className={styles.infoText}>
+          Please log in to see your information.
+        </p>
+      )}
+      {isLoggedIn && (
+        <button onClick={handleLogout} className={styles.logoutButton}>
+          Logout
+        </button>
       )}
     </div>
   );

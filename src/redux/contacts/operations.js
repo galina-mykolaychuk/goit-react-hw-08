@@ -27,7 +27,7 @@ export const fetchContacts = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // Додавання нового контакту
@@ -47,11 +47,11 @@ export const addContact = createAsyncThunk(
           Authorization: `Bearer ${persistedToken}`,
         },
       });
-      return response.data; // Повертаємо створений контакт
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // Видалення контакту за ID
@@ -71,10 +71,39 @@ export const deleteContact = createAsyncThunk(
           Authorization: `Bearer ${persistedToken}`,
         },
       });
-      return contactId; // Повертаємо ID для видалення з локального стану
+      return contactId;
     } catch (error) {
       console.error("Error deleting contact:", error.response.data);
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
+);
+
+// Оновлення контакту за ID
+export const updateContact = createAsyncThunk(
+  "contacts/updateContact",
+  async ({ contactId, contactData }, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("No token found");
+    }
+
+    try {
+      const response = await axios.patch(
+        `/contacts/${contactId}`,
+        contactData,
+        {
+          headers: {
+            Authorization: `Bearer ${persistedToken}`,
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error updating contact:", error.response.data);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
 );

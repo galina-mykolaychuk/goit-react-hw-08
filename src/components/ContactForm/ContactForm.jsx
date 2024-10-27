@@ -19,18 +19,26 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.contactForm}>
+      <label htmlFor="contact-name" className={styles.contactNameLabel}>
+        Contact name
+      </label>
       <input
         type="text"
         id="contact-name"
+        name="contactName"
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
         autoComplete="name"
       />
+      <label htmlFor="contact-number" className={styles.contactPhoneLabel}>
+        Contact phone
+      </label>
       <input
         type="tel"
         id="contact-number"
+        name="contactNumber"
         placeholder="Phone number"
         value={number}
         onChange={(e) => setNumber(e.target.value)}

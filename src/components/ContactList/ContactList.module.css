@@ -1,63 +1,40 @@
 /* ContactList.module.css */
 
-/* .contactList {
+.contactList {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  width: 100%;
 }
 
-.contactItem {
+.contactCard {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  align-items: center;
+  border: 2px solid #333;
   border-radius: 8px;
   padding: 10px;
-  margin-bottom: 10px;
-  width: 30%;
-  box-sizing: border-box;
+}
+.spanText {
+  font-size: 18px;
 }
 
 .contactInfo {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
 }
 
-.contactIcon {
-  font-size: 24px;
-  color: black;
-}
-
-.contactName {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.contactPhone {
-  font-size: 16px;
-} */
-
-.contactList {
-  list-style: none;
-  padding: 0;
-}
-
-.contactItem {
+.contactRow {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 8px;
 }
 
-button {
+.deleteButton {
   background-color: #f44336;
   color: white;
   border: none;
-  padding: 5px;
+  padding: 5px 10px;
+  border-radius: 3px;
   cursor: pointer;
 }
