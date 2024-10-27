@@ -6,31 +6,33 @@ import axios from "axios";
 // Встановлюємо базовий URL для запитів до API
 axios.defaults.baseURL = "https://connections-api.goit.global";
 
+// Допоміжна функція для додавання токена в заголовок
+const setAuthHeader = (token) => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+// Допоміжна функція для очищення заголовка авторизації
+const clearAuthHeader = () => {
+  delete axios.defaults.headers.common.Authorization;
+};
+
 // Реєстрація нового користувача
 export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post("/users/signup", {
-        name: credentials.name, // Поле name
-        email: credentials.email, // Поле email
-        password: credentials.password, // Поле password
-      });
+      const { data } = await axios.post("/users/signup", credentials);
+      setAuthHeader(data.token); // Додаємо токен до заголовка після реєстрації
       return data;
     } catch (error) {
-      console.error(
-        "Registration error:",
-        error.response?.data || error.message
-      );
-      // Перевірка коду помилки MongoDB
       if (error.response?.data.code === 11000) {
         return thunkAPI.rejectWithValue(
-          "Email already in use. Please choose another one."
+          "Email already in use. Please choose another one.",
         );
       }
       return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
-  }
+  },
 );
 
 // Логін існуючого користувача
@@ -39,31 +41,21 @@ export const login = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post("/users/login", credentials);
+      setAuthHeader(data.token); // Додаємо токен до заголовка після логіну
       return data;
     } catch (error) {
-      console.error("Login error:", error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );
 
 // Логаут користувача
-export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token; // Отримуємо токен з Redux state
-
-  if (!persistedToken) {
-    return thunkAPI.rejectWithValue("No token found"); // Якщо токен відсутній, повертаємо помилку
-  }
-
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.post("/users/logout", null, {
-      headers: {
-        Authorization: `Bearer ${persistedToken}`, // Додаємо токен в заголовок
-      },
-    });
+    await axios.post("/users/logout");
+    clearAuthHeader(); // Очищаємо заголовок після логауту
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message); // Обробка помилки
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -79,14 +71,11 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      const { data } = await axios.get("/users/current", {
-        headers: {
-          Authorization: `Bearer ${persistedToken}`,
-        },
-      });
+      setAuthHeader(persistedToken); // Додаємо токен до заголовка перед запитом
+      const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
-  }
+  },
 );

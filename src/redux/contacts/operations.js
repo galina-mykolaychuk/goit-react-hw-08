@@ -3,9 +3,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Встановлюємо базовий URL для запитів до API
-axios.defaults.baseURL = "https://connections-api.goit.global";
-
 // Отримання всіх контактів
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
@@ -18,11 +15,14 @@ export const fetchContacts = createAsyncThunk(
     }
 
     try {
-      const response = await axios.get("/contacts", {
-        headers: {
-          Authorization: `Bearer ${persistedToken}`,
+      const response = await axios.get(
+        "https://connections-api.goit.global/contacts",
+        {
+          headers: {
+            Authorization: `Bearer ${persistedToken}`,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -42,11 +42,15 @@ export const addContact = createAsyncThunk(
     }
 
     try {
-      const response = await axios.post("/contacts", contact, {
-        headers: {
-          Authorization: `Bearer ${persistedToken}`,
+      const response = await axios.post(
+        "https://connections-api.goit.global/contacts",
+        contact,
+        {
+          headers: {
+            Authorization: `Bearer ${persistedToken}`,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -66,11 +70,14 @@ export const deleteContact = createAsyncThunk(
     }
 
     try {
-      await axios.delete(`/contacts/${contactId}`, {
-        headers: {
-          Authorization: `Bearer ${persistedToken}`,
+      await axios.delete(
+        `https://connections-api.goit.global/contacts/${contactId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${persistedToken}`,
+          },
         },
-      });
+      );
       return contactId;
     } catch (error) {
       console.error("Error deleting contact:", error.response.data);
@@ -92,7 +99,7 @@ export const updateContact = createAsyncThunk(
 
     try {
       const response = await axios.patch(
-        `/contacts/${contactId}`,
+        `https://connections-api.goit.global/contacts/${contactId}`,
         contactData,
         {
           headers: {

@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, refreshUser } from "../../redux/auth/operations";
+import { logOut, refreshUser } from "../../redux/auth/operations";
 import styles from "./UserMenu.module.css";
 
 const UserMenu = () => {
@@ -17,7 +17,7 @@ const UserMenu = () => {
   }, [dispatch, isLoggedIn]);
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logOut()); // Змінено logout на logOut
   };
 
   return (
