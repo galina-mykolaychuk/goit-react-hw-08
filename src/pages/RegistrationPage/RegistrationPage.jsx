@@ -10,15 +10,14 @@ const RegistrationPage = () => (
       maxWidth: "600px",
       margin: "0 auto",
       textAlign: "center",
-      padding: "20px",
+      padding: "10px",
     }}
   >
     <h1>Register</h1>
-
     <p
       style={{
         textAlign: "justify",
-        padding: "20px",
+        padding: "10px",
       }}
     >
       Join to keep your essential contacts in one app and secure place. Just

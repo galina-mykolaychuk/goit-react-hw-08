@@ -22,20 +22,8 @@ const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing); // Отримання стану isRefreshing
 
   useEffect(() => {
-    const refresh = async () => {
-      console.log("Attempting to refresh user");
-      try {
-        await dispatch(refreshUser()); // Оновлення авторизованого користувача
-        console.log("User refreshed successfully");
-      } catch (error) {
-        console.error("Error refreshing user:", error);
-      }
-    };
-
-    if (!isRefreshing) {
-      refresh(); // Запускаємо refresh тільки якщо isRefreshing = false
-    }
-  }, [dispatch, isRefreshing]); // Виконання useEffect на зміни isRefreshing
+    dispatch(refreshUser()); // Оновлення авторизованого користувача
+  }, [dispatch]);
 
   return (
     <>
@@ -44,7 +32,7 @@ const App = () => {
           <b>Refreshing user...</b> // Показувати повідомлення тільки під час оновлення
         ) : (
           <Routes>
-            <Route index element={<HomePage />} /> {/* Головна сторінка */}
+            <Route path="/" element={<HomePage />} /> {/* Головна сторінка */}
             <Route
               path="register"
               element={

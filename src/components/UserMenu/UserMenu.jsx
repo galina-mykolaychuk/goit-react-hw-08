@@ -10,12 +10,6 @@ const UserMenu = () => {
   const user = useSelector((state) => state.auth.user);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(refreshUser());
-    }
-  }, [dispatch, isLoggedIn]);
-
   const handleLogout = () => {
     dispatch(logOut()); // Змінено logout на logOut
   };

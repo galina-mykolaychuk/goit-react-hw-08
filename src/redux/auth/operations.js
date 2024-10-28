@@ -25,6 +25,7 @@ export const register = createAsyncThunk(
       setAuthHeader(data.token); // Додаємо токен до заголовка після реєстрації
       return data;
     } catch (error) {
+      // Обробка помилки при реєстрації
       if (error.response?.data.code === 11000) {
         return thunkAPI.rejectWithValue(
           "Email already in use. Please choose another one.",
@@ -64,18 +65,19 @@ export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken = state.auth.token; // Отримання токена з Redux
 
-    if (persistedToken === null) {
+    // Перевірка наявності токена
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue("No token found");
     }
 
     try {
       setAuthHeader(persistedToken); // Додаємо токен до заголовка перед запитом
       const { data } = await axios.get("/users/current");
-      return data;
+      return data; // Повертаємо дані користувача
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message); // Обробка помилки
     }
   },
 );

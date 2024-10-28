@@ -68,7 +68,7 @@ function RegistrationForm() {
         margin: "0 auto",
         p: 2,
         borderRadius: 2,
-        boxShadow: 20,
+        boxShadow: 5,
         backgroundColor: "background.paper",
       }}
     >

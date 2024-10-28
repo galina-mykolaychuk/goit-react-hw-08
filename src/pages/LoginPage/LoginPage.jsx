@@ -7,21 +7,27 @@ const LoginPage = () => (
     style={{
       maxWidth: "600px",
       margin: "0 auto",
-      textAlign: "left",
-      padding: "30px",
+      padding: "10px",
     }}
   >
-    <h1>Login</h1>
+    <h1
+      style={{
+        textAlign: "center",
+      }}
+    >
+      Login
+    </h1>
     <p
       style={{
         textAlign: "justify",
-        padding: "20px",
+        padding: "10px",
       }}
     >
       Already our user? Please, enter your registration information to access
       your personal contact collection.
     </p>
     <LoginForm />
+    <br></br>
   </div>
 );
 

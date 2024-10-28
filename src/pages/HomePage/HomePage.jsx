@@ -25,10 +25,9 @@ const HomePage = () => (
           The best app, where you can manage <br></br> your contacts!
         </p>
         <Link to="/register">
-          <button
-            className="btn btn-primary rounded-lg"
-            style={{ backgroundColor: "#5d5d70" }}
-          >
+          <button className={styles.getStartedButton}>
+            {" "}
+            {/* кнопка Get started */}
             Get started
           </button>
         </Link>
