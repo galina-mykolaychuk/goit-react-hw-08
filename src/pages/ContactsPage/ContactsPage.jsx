@@ -21,7 +21,7 @@ const ContactsPage = () => {
   return (
     <div className={styles.contactsPageContainer}>
       <br />
-      <h1>Phonebook</h1>
+      <h1 className={styles.contactsTitle}>Phonebook</h1>
       <p className={styles.contactsText}>
         Welcome to our app! Here you can manage your contacts - add or delete
         them, and always have access to your important information!

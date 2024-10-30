@@ -15,7 +15,7 @@ const SearchBox = () => {
   };
 
   return (
-    <div>
+    <div className={styles.searchBoxContainer}>
       <label htmlFor="search" className={styles.searchBoxLabel}>
         Search contacts
       </label>

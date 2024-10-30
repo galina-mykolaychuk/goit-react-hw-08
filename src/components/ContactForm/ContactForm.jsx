@@ -31,6 +31,7 @@ const ContactForm = () => {
         onChange={(e) => setName(e.target.value)}
         required
         autoComplete="name"
+        className={styles.input}
       />
       <label htmlFor="contact-number" className={styles.contactPhoneLabel}>
         Contact phone
@@ -44,8 +45,11 @@ const ContactForm = () => {
         onChange={(e) => setNumber(e.target.value)}
         required
         autoComplete="tel"
+        className={styles.input}
       />
-      <button type="submit">Add Contact</button>
+      <button type="submit" className={styles.button}>
+        Add Contact
+      </button>
     </form>
   );
 };

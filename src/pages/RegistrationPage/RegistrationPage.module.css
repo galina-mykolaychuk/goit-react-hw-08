@@ -1,10 +1,20 @@
 /* RegistrationPage.module.css */
 
-h1 {
+.wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+}
+
+.title {
   font-size: 60px;
   line-height: 1.1;
   font-weight: 600;
 }
-p {
+
+.text {
   font-size: 20px;
+  text-align: justify;
+  padding: 10px;
 }

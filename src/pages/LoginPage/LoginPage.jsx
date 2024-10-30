@@ -1,33 +1,18 @@
 // LoginPage.jsx
 
+import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import css from "./LoginPage.module.css";
 
 const LoginPage = () => (
-  <div
-    style={{
-      maxWidth: "600px",
-      margin: "0 auto",
-      padding: "10px",
-    }}
-  >
-    <h1
-      style={{
-        textAlign: "center",
-      }}
-    >
-      Login
-    </h1>
-    <p
-      style={{
-        textAlign: "justify",
-        padding: "10px",
-      }}
-    >
+  <div className={css.wrap}>
+    <h1 className={css.title}>Login</h1>
+    <p className={css.text}>
       Already our user? Please, enter your registration information to access
       your personal contact collection.
     </p>
     <LoginForm />
-    <br></br>
+    <br />
   </div>
 );
 
